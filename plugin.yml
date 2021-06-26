@@ -1,0 +1,13 @@
+main: me.warpednova.guibanner.Main
+version: 2.1
+name: GUIBanner
+description: A customizeable, user-friendly interface for tempbanning players!
+author: WarpedNova
+
+commands:
+    tempban:
+      usage: /tempban <Player_Name>
+      description: Tempbans a player!
+    guireload:
+      usage: /guireload
+      description: Reloads the configuration file!

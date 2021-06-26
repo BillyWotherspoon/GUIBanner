@@ -1,0 +1,93 @@
+#GUI Banner basic configuration
+
+#DO NOT CHANGE THIS!
+Names:
+#DO NOT CHANGE THIS!
+
+    Button1: 'XRAY'
+    Button2: 'Fly/Speed Hacking'
+    Button3: 'PVP'
+    Button4: 'Exploiting'
+    Button5: 'Griefing'
+    Button6: 'Rudeness'
+    Button7: 'Staff Impersonation/Disrespect'
+    Button8: 'Advertising'
+    Button9: 'Other/Minor Offenses'
+    Button10: '1Hour'
+    Button11: '6Hour'
+    Button12: '24Hour'
+    Button13: '7Day'
+    Button14: '14Day'
+    Button15: '30Day'
+    Button16: '60Day'
+    Button17: 'ManualRPT'
+    Button18: 'Permanent'
+
+#DO NOT CHANGE THIS!
+Messages:
+#DO NOT CHANGE THIS!
+
+    NoAccess: 'Sorry, you do not have access to that command!'
+    InvalidUsage: 'Usage: /tempban <Player_Name>' 
+    ReloadMessage: 'The Config File Has Been Reloaded!'
+
+#DO NOT CHANGE THIS!
+BanMessages:
+#DO NOT CHANGE THIS!
+
+#DO NOT CHANGE THIS!
+    Hacks:
+#DO NOT CHANGE THIS!
+
+       Button1: 'Usage of XRAY Hacks'
+       Button2: 'Usage of Fly/Speed Hacks.'
+       Button3: 'Usage of PVP/Kill Aura Hacks.'
+       Button4: 'Usage of Exploiting (Destroying Items/Money).'
+       Button5: 'Griefing.'
+       Button6: 'Racism/Harassment/Sexism/Threats.'
+       Button7: 'Staff Impersonation/Disrespect.'
+       Button8: 'Advertising.'
+       Button9: 'None Categorized Offense.'
+       Button10: 'Other: None Categorized.'
+       Button11: 'Other: None Categorized.'
+       Button12: 'Other: None Categorized.'
+       Button13: 'Other: None Categorized.'
+       Button14: 'Other: None Categorized.'
+       Button15: 'Other: None Categorized.'
+       Button16: 'Other: None Categorized.'
+       Button17: 'Manual RPT.'
+       Button18: 'Permanently Banned.'
+
+TempBanTimes:
+ 
+#DO NOT CHANGE THIS!
+   Hacks:   
+#DO NOT CHANGE THIS!
+
+      Button1: '3days'
+      Button2: '14days'
+      Button3: '30days'
+      Button4: '30days'
+      Button5: '14days'
+      Button6: '2days'
+      Button7: '2days'
+      Button8: '4days'
+      Button9: '5days'
+      Button10: '1hour'
+      Button11: '6hour'
+      Button12: '24hour'
+      Button13: '7days'
+      Button14: '14days'
+      Button15: '30days'
+      Button16: '60days'
+      Button17: '1months'
+      Button18: '50years'
+      
+BroadcastMessage:
+   Message: '&6[GUI Banner] &fThe player %targetplayer% has been banned for %bantime% by %player% for reason: %reason%!'
+      
+OnBanCommand:
+
+   Command: 'smite %targetplayer%'
+     
+      
