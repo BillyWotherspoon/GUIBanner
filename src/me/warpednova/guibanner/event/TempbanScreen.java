@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -63,41 +62,42 @@ public final class TempbanScreen implements Listener {
 		List<String> Button18Lore = Arrays.asList(new String[] { ChatColor.GOLD + "Temp Ban",
 				ChatColor.GOLD + this.main.getConfig().getString("TempBanTimes.Hacks.Button18") });
 		ItemStack Button1;
-		ItemMeta Button1Meta = (Button1 = new ItemStack(Material.DIAMOND)).getItemMeta();
+		ItemMeta Button1Meta = (Button1 = new ItemStack(Main.getMaterial("DIAMOND"))).getItemMeta();
 		ItemStack Button2;
-		ItemMeta Button2Meta = (Button2 = new ItemStack(Material.FEATHER)).getItemMeta();
+		ItemMeta Button2Meta = (Button2 = new ItemStack(Main.getMaterial("FEATHER"))).getItemMeta();
 		ItemStack Button3;
-		ItemMeta Button3Meta = (Button3 = new ItemStack(Material.IRON_SWORD)).getItemMeta();
+		ItemMeta Button3Meta = (Button3 = new ItemStack(Main.getMaterial("IRON_SWORD"))).getItemMeta();
 		ItemStack Button4;
-		ItemMeta Button4Meta = (Button4 = new ItemStack(Material.ENDER_CHEST)).getItemMeta();
+		ItemMeta Button4Meta = (Button4 = new ItemStack(Main.getMaterial("ENDER_CHEST"))).getItemMeta();
 		ItemStack Button5;
-		ItemMeta Button5Meta = (Button5 = new ItemStack(Material.TNT)).getItemMeta();
+		ItemMeta Button5Meta = (Button5 = new ItemStack(Main.getMaterial("TNT"))).getItemMeta();
 		ItemStack Button6;
-		ItemMeta Button6Meta = (Button6 = new ItemStack(Material.BOOK_AND_QUILL)).getItemMeta();
+		ItemMeta Button6Meta = (Button6 = new ItemStack(Main.getMaterial("BOOK_AND_QUILL"))).getItemMeta();
 		ItemStack Button7;
-		ItemMeta Button7Meta = (Button7 = new ItemStack(Material.SKULL_ITEM, 1, (byte) 4)).getItemMeta();
+		@SuppressWarnings("deprecation")
+		ItemMeta Button7Meta = (Button7 = new ItemStack(Main.getMaterial("SKULL_ITEM"), 1, (byte) 4)).getItemMeta();
 		ItemStack Button8;
-		ItemMeta Button8Meta = (Button8 = new ItemStack(Material.COMPASS)).getItemMeta();
+		ItemMeta Button8Meta = (Button8 = new ItemStack(Main.getMaterial("COMPASS"))).getItemMeta();
 		ItemStack Button9;
-		ItemMeta Button9Meta = (Button9 = new ItemStack(Material.BED)).getItemMeta();
+		ItemMeta Button9Meta = (Button9 = new ItemStack(Main.getMaterial("BED"))).getItemMeta();
 		ItemStack Button10;
-		ItemMeta Button10Meta = (Button10 = new ItemStack(Material.COAL_ORE)).getItemMeta();
+		ItemMeta Button10Meta = (Button10 = new ItemStack(Main.getMaterial("COAL_ORE"))).getItemMeta();
 		ItemStack Button11;
-		ItemMeta Button11Meta = (Button11 = new ItemStack(Material.REDSTONE_ORE)).getItemMeta();
+		ItemMeta Button11Meta = (Button11 = new ItemStack(Main.getMaterial("REDSTONE_ORE"))).getItemMeta();
 		ItemStack Button12;
-		ItemMeta Button12Meta = (Button12 = new ItemStack(Material.LAPIS_ORE)).getItemMeta();
+		ItemMeta Button12Meta = (Button12 = new ItemStack(Main.getMaterial("LAPIS_ORE"))).getItemMeta();
 		ItemStack Button13;
-		ItemMeta Button13Meta = (Button13 = new ItemStack(Material.IRON_ORE)).getItemMeta();
+		ItemMeta Button13Meta = (Button13 = new ItemStack(Main.getMaterial("IRON_ORE"))).getItemMeta();
 		ItemStack Button14;
-		ItemMeta Button14Meta = (Button14 = new ItemStack(Material.GOLD_ORE)).getItemMeta();
+		ItemMeta Button14Meta = (Button14 = new ItemStack(Main.getMaterial("GOLD_ORE"))).getItemMeta();
 		ItemStack Button15;
-		ItemMeta Button15Meta = (Button15 = new ItemStack(Material.EMERALD_ORE)).getItemMeta();
+		ItemMeta Button15Meta = (Button15 = new ItemStack(Main.getMaterial("EMERALD_ORE"))).getItemMeta();
 		ItemStack Button16;
-		ItemMeta Button16Meta = (Button16 = new ItemStack(Material.DIAMOND_ORE)).getItemMeta();
+		ItemMeta Button16Meta = (Button16 = new ItemStack(Main.getMaterial("DIAMOND_ORE"))).getItemMeta();
 		ItemStack Button17;
-		ItemMeta Button17Meta = (Button17 = new ItemStack(Material.LOG)).getItemMeta();
+		ItemMeta Button17Meta = (Button17 = new ItemStack(Main.getMaterial("LOG"))).getItemMeta();
 		ItemStack Button18;
-		ItemMeta Button18Meta = (Button18 = new ItemStack(Material.BEDROCK)).getItemMeta();
+		ItemMeta Button18Meta = (Button18 = new ItemStack(Main.getMaterial("BEDROCK"))).getItemMeta();
 
 		String Button1Name = this.main.getConfig().getString("Names.Button1");
 		String Button2Name = this.main.getConfig().getString("Names.Button2");
@@ -213,7 +213,7 @@ public final class TempbanScreen implements Listener {
 	@EventHandler
 	private void onHackScreenClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
-		if (!event.getInventory().getName().equalsIgnoreCase(ChatColor.AQUA + "EssentialsX TempBan " + Tempban.targetPlayer)) {
+		if (!event.getView().getTitle().equalsIgnoreCase(ChatColor.AQUA + "EssentialsX TempBan " + Tempban.targetPlayer)) {
 			return;
 		}
 		String Button1BanMessage = this.main.getConfig().getString("BanMessages.Hacks.Button1");
@@ -383,7 +383,7 @@ public final class TempbanScreen implements Listener {
 		OnBanCommand = OnBanCommand.replace("%targetplayer%", Tempban.targetPlayer);
 
 		ItemStack Button1 = event.getCurrentItem();
-		if (Button1.getType() == Material.DIAMOND) {
+		if (Button1.getType() == Main.getMaterial("DIAMOND")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button1BanTime + " " + Button1BanMessage);
@@ -391,7 +391,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B1B, "guibanner.broadcast");
 		}
 		ItemStack Button2 = event.getCurrentItem();
-		if (Button2.getType() == Material.FEATHER) {
+		if (Button2.getType() == Main.getMaterial("FEATHER")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button2BanTime + " " + Button2BanMessage);
@@ -399,7 +399,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B2B, "guibanner.broadcast");
 		}
 		ItemStack Button3 = event.getCurrentItem();
-		if (Button3.getType() == Material.IRON_SWORD) {
+		if (Button3.getType() == Main.getMaterial("IRON_SWORD")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button3BanTime + " " + Button3BanMessage);
@@ -407,7 +407,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B3B, "guibanner.broadcast");
 		}
 		ItemStack Button4 = event.getCurrentItem();
-		if (Button4.getType() == Material.ENDER_CHEST) {
+		if (Button4.getType() == Main.getMaterial("ENDER_CHEST")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button4BanTime + " " + Button4BanMessage);
@@ -415,7 +415,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B4B, "guibanner.broadcast");
 		}
 		ItemStack Button5 = event.getCurrentItem();
-		if (Button5.getType() == Material.TNT) {
+		if (Button5.getType() == Main.getMaterial("TNT")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button5BanTime + " " + Button5BanMessage);
@@ -423,7 +423,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B5B, "guibanner.broadcast");
 		}
 		ItemStack Button6 = event.getCurrentItem();
-		if (Button6.getType() == Material.BOOK_AND_QUILL) {
+		if (Button6.getType() == Main.getMaterial("BOOK_AND_QUILL")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button6BanTime + " " + Button6BanMessage);
@@ -431,7 +431,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B6B, "guibanner.broadcast");
 		}
 		ItemStack Button7 = event.getCurrentItem();
-		if (Button7.getType() == Material.SKULL_ITEM) {
+		if (Button7.getType() == Main.getMaterial("SKULL_ITEM")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button7BanTime + " " + Button7BanMessage);
@@ -439,7 +439,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B7B, "guibanner.broadcast");
 		}
 		ItemStack Button8 = event.getCurrentItem();
-		if (Button8.getType() == Material.COMPASS) {
+		if (Button8.getType() == Main.getMaterial("COMPASS")) {
 
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
@@ -448,7 +448,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B8B, "guibanner.broadcast");
 		}
 		ItemStack Button9 = event.getCurrentItem();
-		if (Button9.getType() == Material.BED) {
+		if (Button9.getType() == Main.getMaterial("BED")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button9BanTime + " " + Button9BanMessage);
@@ -456,7 +456,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B9B, "guibanner.broadcast");
 		}
 		ItemStack Button10 = event.getCurrentItem();
-		if (Button10.getType() == Material.COAL_ORE) {
+		if (Button10.getType() == Main.getMaterial("COAL_ORE")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button10BanTime + " " + Button10BanMessage);
@@ -464,7 +464,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B10B, "guibanner.broadcast");
 		}
 		ItemStack Button11 = event.getCurrentItem();
-		if (Button11.getType() == Material.REDSTONE_ORE) {
+		if (Button11.getType() == Main.getMaterial("REDSTONE_ORE")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button11BanTime + " " + Button11BanMessage);
@@ -472,7 +472,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B11B, "guibanner.broadcast");
 		}
 		ItemStack Button12 = event.getCurrentItem();
-		if (Button12.getType() == Material.LAPIS_ORE) {
+		if (Button12.getType() == Main.getMaterial("LAPIS_ORE")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button12BanTime + " " + Button12BanMessage);
@@ -480,7 +480,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B12B, "guibanner.broadcast");
 		}
 		ItemStack Button13 = event.getCurrentItem();
-		if (Button13.getType() == Material.IRON_ORE) {
+		if (Button13.getType() == Main.getMaterial("IRON_ORE")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button13BanTime + " " + Button13BanMessage);
@@ -488,7 +488,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B13B, "guibanner.broadcast");
 		}
 		ItemStack Button14 = event.getCurrentItem();
-		if (Button14.getType() == Material.GOLD_ORE) {
+		if (Button14.getType() == Main.getMaterial("GOLD_ORE")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button14BanTime + " " + Button14BanMessage);
@@ -496,7 +496,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B14B, "guibanner.broadcast");
 		}
 		ItemStack Button15 = event.getCurrentItem();
-		if (Button15.getType() == Material.EMERALD_ORE) {
+		if (Button15.getType() == Main.getMaterial("EMERALD_ORE")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button15BanTime + " " + Button15BanMessage);
@@ -504,7 +504,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B15B, "guibanner.broadcast");
 		}
 		ItemStack Button16 = event.getCurrentItem();
-		if (Button16.getType() == Material.DIAMOND_ORE) {
+		if (Button16.getType() == Main.getMaterial("DIAMOND_ORE")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button16BanTime + " " + Button16BanMessage);
@@ -512,7 +512,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B16B, "guibanner.broadcast");
 		}
 		ItemStack Button17 = event.getCurrentItem();
-		if (Button17.getType() == Material.LOG) {
+		if (Button17.getType() == Main.getMaterial("LOG")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button17BanTime + " " + Button17BanMessage);
@@ -520,7 +520,7 @@ public final class TempbanScreen implements Listener {
 			Bukkit.broadcast(B17B, "guibanner.broadcast");
 		}
 		ItemStack Button18 = event.getCurrentItem();
-		if (Button18.getType() == Material.BEDROCK) {
+		if (Button18.getType() == Main.getMaterial("BEDROCK")) {
 			Bukkit.getServer().dispatchCommand(player, OnBanCommand);
 			Bukkit.getServer().dispatchCommand(player,
 					"essentials:tempban " + Tempban.targetPlayer + " " + Button18BanTime + " " + Button18BanMessage);

@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -14,16 +15,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.warpednova.guibanner.commands.Tempban;
 import me.warpednova.guibanner.event.SelectionScreen;
 import me.warpednova.guibanner.event.TempbanScreen;
-import me.warpednova.guibanner.InventoryStealPrevention;
 
 public class Main extends JavaPlugin implements Listener {
 	public String noAccessMessage = getConfig().getString("Messages.NoAccess");
 	public String invalidUsageMessage = getConfig().getString("Messages.InvalidUsage");
 	String reloadMessage = getConfig().getString("Messages.ReloadMessage");
 	public FileConfiguration config;
+	public static JavaPlugin pl;
 	File cfile;
 	
 	public void onEnable() {
+		pl = this;
 		getLogger().info("GUI Banner has been enabled.");
 
 		getCommand("tempban").setExecutor(new Tempban(this));
@@ -40,6 +42,16 @@ public class Main extends JavaPlugin implements Listener {
 		saveConfig();
 		cfile = new File(getDataFolder(), "config.yml");
 		return;
+	}
+	
+	public static Material getMaterial(String name) {
+		Material ret;
+		if ((ret = Material.getMaterial(name)) == null &&
+				(Material.getMaterial(name, true)) == null) {
+			pl.getLogger().warning("Invalid material: " + name);
+			ret = Material.STONE;
+		}
+		return ret;
 	}
 	
 	public void onDisable() {
