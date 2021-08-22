@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +12,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import me.warpednova.guibanner.Main;
 
 public final class SelectionScreen implements Listener {
 	private TempbanScreen tempbanscreen;
@@ -24,9 +25,9 @@ public final class SelectionScreen implements Listener {
 	public static void openBanSelectionScreen(Player player) {
 		Inventory selectionScreen = Bukkit.createInventory(null, 9, ChatColor.DARK_RED + "Select to Continue");
 		ItemStack tempbanOptionButton;
-		ItemMeta tempbanOptionButtonMeta = (tempbanOptionButton = new ItemStack(Material.DIAMOND_SWORD)).getItemMeta();
+		ItemMeta tempbanOptionButtonMeta = (tempbanOptionButton = new ItemStack(Main.getMaterial("DIAMOND_SWORD"))).getItemMeta();
 		ItemStack cancelButton;
-		ItemMeta cancelButtonMeta = (cancelButton = new ItemStack(Material.STAINED_GLASS_PANE)).getItemMeta();
+		ItemMeta cancelButtonMeta = (cancelButton = new ItemStack(Main.getMaterial("STAINED_GLASS_PANE"))).getItemMeta();
 
 		List<String> tempbanOptionButtonLore = Arrays
 				.asList(new String[] { ChatColor.GOLD + "Click To Open Tempban Menu..." });
@@ -47,17 +48,17 @@ public final class SelectionScreen implements Listener {
 	@EventHandler
 	private void onSelectionScreenClick(InventoryClickEvent event) {
 		Player player = (Player) event.getWhoClicked();
-		if (!event.getInventory().getName().equalsIgnoreCase(ChatColor.DARK_RED + "Select to Continue")) {
+		if (!event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_RED + "Select to Continue")) {
 			return;
 		}
 		ItemStack tempbanOptionButton = event.getCurrentItem();
-		if (tempbanOptionButton.getType() == Material.DIAMOND_SWORD) {
+		if (tempbanOptionButton.getType() == Main.getMaterial("DIAMOND_SWORD")) {
 			player.closeInventory();
 			this.tempbanscreen.openTempbanOptionScreen(player);
 			return;
 		} else {
 			ItemStack cancelButton = event.getCurrentItem();
-			if (cancelButton.getType() == Material.STAINED_GLASS_PANE) {
+			if (cancelButton.getType() == Main.getMaterial("STAINED_GLASS_PANE")) {
 				player.closeInventory();
 				player.sendMessage(ChatColor.GREEN + "[GUI Banner] " + ChatColor.DARK_RED + "Ban Cancelled");
 				return;
