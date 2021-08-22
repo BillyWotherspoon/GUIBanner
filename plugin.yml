@@ -2,7 +2,7 @@ main: me.warpednova.guibanner.Main
 version: 2.2
 name: GUIBanner
 description: A customizeable, user-friendly interface for tempbanning players!
-api-vesion: 1.12
+api-version: 1.12
 author: WarpedNova
 depends: ["Essentials"]
 
