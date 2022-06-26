@@ -25,15 +25,13 @@ public class Main extends JavaPlugin implements Listener {
 	
 	public void onEnable() {
 		pl = this;
+		
 		getLogger().info("GUI Banner has been enabled.");
-
 		getCommand("tempban").setExecutor(new Tempban(this));
 
-		Bukkit.getPluginManager().registerEvents(new TempbanScreen(this), this);
-		Bukkit.getPluginManager().registerEvents(new SelectionScreen(new TempbanScreen(this)), this);
-
-		Bukkit.getPluginManager().registerEvents(new InventoryStealPrevention(), this);
-		
+		TempbanScreen tempbanScreen = new TempbanScreen(this);
+		Bukkit.getPluginManager().registerEvents(tempbanScreen, this);
+		Bukkit.getPluginManager().registerEvents(new SelectionScreen(tempbanScreen), this);
 		Bukkit.getPluginManager().registerEvents(this, this);
 
 		config = getConfig();
@@ -61,6 +59,7 @@ public class Main extends JavaPlugin implements Listener {
 		if (command.getName().equalsIgnoreCase("guireload")) {
 			if (sender.hasPermission("guibanner.reload")) {
 				reloadConfig();
+				TempbanScreen.reloadItems();
 				sender.sendMessage(ChatColor.GREEN + "[GUI Banner] " + ChatColor.BLUE + reloadMessage);
 			}
 		}
